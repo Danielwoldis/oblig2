@@ -49,7 +49,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        Objects.requireNonNull(a, "Tabellen har ingen verdier!");
+        DobbeltLenketListe test = (DobbeltLenketListe) new Object();
+        test.hode = new Node(a[0]);
+        for (int i = 1; i < a.length; i++){
+            Node q = new Node(a[i], )
+        }
+
+        test.hale = (Node) a[a.length-1];
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -58,12 +66,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        antall = 0;
+        for (T t : this) antall++;
+        return antall;
     }
 
     @Override
     public boolean tom() {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        return antall() == 0;
     }
 
     @Override
