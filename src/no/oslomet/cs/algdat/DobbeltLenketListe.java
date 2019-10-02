@@ -1,8 +1,6 @@
 package no.oslomet.cs.algdat;
 
-
 ////////////////// class DobbeltLenketListe //////////////////////////////
-
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -14,7 +12,6 @@ import java.util.StringJoiner;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Predicate;
-
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
