@@ -48,7 +48,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe(T[] a){
         //throw new NotImplementedException();
-        if(a.length < 1){ // skal egt bruke RequireNonNull
+        if(a == null){ // skal egt bruke RequireNonNull
             throw new NullPointerException("Tabellen er tom!");
         }
 
@@ -57,14 +57,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p = new Node<T>(null);
         liste.hode = p;
 
+        int startverdi = 0;
+
         for(T t: a){ // finner første objekt i tabellen som ikke er null
             if (t != null){
                 p = new Node<T>(t);
                 break;
             }
+            startverdi++;
         }
 
-        for (int i = 1; i < a.length; i++){
+        for (int i = startverdi; i < a.length; i++){
             if(a[i] != null){
                 antall++;
                 Node<T> q = new Node<T>(a[i]);
@@ -73,11 +76,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
                 p = q;
                 liste.hale = q;
-                System.out.println(p.forrige.verdi);
             }
 
         }
-        System.out.println(liste.hale.verdi);
     }
 
     public Liste<T> subliste(int fra, int til){
