@@ -45,19 +45,41 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        Node<T> p = new Node<T>(null);
     }
 
-    public DobbeltLenketListe(T[] a) {
+    public DobbeltLenketListe(T[] a){
         //throw new NotImplementedException();
-        Objects.requireNonNull(a, "Tabellen har ingen verdier!");
-        DobbeltLenketListe test = (DobbeltLenketListe) new Object();
-        test.hode = new Node(a[0]);
-        for (int i = 1; i < a.length; i++){
-            Node q = new Node(a[i], )
+        if(a.length < 1){ // skal egt bruke RequireNonNull
+            throw new NullPointerException("Tabellen er tom!");
         }
 
-        test.hale = (Node) a[a.length-1];
+        DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
+
+        Node<T> p = new Node<T>(null);
+        liste.hode = p;
+
+        for(T t: a){ // finner første objekt i tabellen som ikke er null
+            if (t != null){
+                p = new Node<T>(t);
+                break;
+            }
+        }
+
+        for (int i = 1; i < a.length; i++){
+            if(a[i] != null){
+                Node<T> q = new Node<T>(a[i]);
+                q.forrige = p;
+                p.neste = q;
+
+                p = q;
+                liste.hale = q;
+                System.out.println(p.forrige.verdi);
+            }
+
+        }
+        System.out.println(liste.hale.verdi);
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -134,7 +156,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
