@@ -66,6 +66,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         for (int i = 1; i < a.length; i++){
             if(a[i] != null){
+                antall++;
                 Node<T> q = new Node<T>(a[i]);
                 q.forrige = p;
                 p.neste = q;
@@ -86,8 +87,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public int antall() {
         //throw new NotImplementedException();
-        antall = 0;
-        for (T t : this) antall++;
         return antall;
     }
 
