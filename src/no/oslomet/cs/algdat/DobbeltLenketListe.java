@@ -146,12 +146,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        if(!tom())
-        {
+        if(!tom()){
            sb.append(hode.verdi);
         
-         for(Node<T> p = hode.neste; p != null; p = p.neste)
-         {
+         for(Node<T> p = hode.neste; p != null; p = p.neste){
              sb.append(",").append(" ").append(p.verdi);
          }
         }
