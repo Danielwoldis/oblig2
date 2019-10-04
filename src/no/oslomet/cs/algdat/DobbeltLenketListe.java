@@ -55,7 +55,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
 
         Node<T> p = new Node<T>(null);
-        liste.hode= p;
+        liste.hode = p;
 
         int startverdi = 0;
 
@@ -66,12 +66,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             startverdi++;
         }
-        liste.hode= p;
 
         for (int i = startverdi; i < a.length; i++){
             if(a[i] != null){
                 antall++;
-                Node<T> q = new Node<>(a[i]);
+                Node<T> q = new Node<T>(a[i]);
                 q.forrige = p;
                 p.neste = q;
 
@@ -80,9 +79,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
 
         }
-        this.hode=liste.hode;
-        this.hale=liste.hale;
-
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -148,32 +144,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        if (tom()) return "[]";
-        StringJoiner join=new StringJoiner(",");
-        Node<T> node=hode;
-        node=node.neste;
-        while (node!=null){
-            join.add(node.verdi.toString());
-            node=node.neste;
-        }
-
-        return "["+join.toString()+"]";
-//
-//        while(node!=null){
-//            System.out.println(node.verdi);
-//            node=node.neste;
-//        }
-//
-//
-//
-//        return "kk";
-
-
+        throw new NotImplementedException();
     }
 
     public String omvendtString() {
-        if(tom()) return "[]";
-        return "";
+        throw new NotImplementedException();
     }
 
     @Override
