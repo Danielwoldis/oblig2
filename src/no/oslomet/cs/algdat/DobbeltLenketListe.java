@@ -8,6 +8,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Comparator;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -163,15 +164,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        if(verdi!=null){
-            return false;
-        }
+        Objects.requireNonNull(verdi, "Kan ikke være null");
         if (antall()==0){
-            hale= new Node<>(verdi);
+            hode= new Node<>(verdi);
+            hale = new Node<>(verdi);
             antall++;
             return true;
         }else{
-            hale.forrige= new Node<>(verdi);
+            Node<T> p = new Node<>(verdi);
+
+
             antall++;
             return true;
         }
@@ -222,12 +224,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
+        if(hode == null){
+            return "[]";
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         if(!tom()){
             sb.append(hode.verdi);
-
-
 
          for(Node<T> p = hode.neste; p != null; p = p.neste){
              sb.append(",").append(" ").append(p.verdi);
@@ -238,6 +241,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public String omvendtString() {
+        if(hode == null){
+            return "[]";
+        }
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         if(!tom()){

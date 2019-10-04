@@ -16,6 +16,9 @@ public class Main extends DobbeltLenketListe{
         Liste<String> liste1 = new DobbeltLenketListe<>();
         System.out.println(liste.antall() + " " + liste.tom());
 
+        System.out.println(liste.toString());
+        liste.leggInn(4);
+        System.out.println(liste.toString());
     }
 }
 
