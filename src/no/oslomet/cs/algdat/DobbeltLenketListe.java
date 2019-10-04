@@ -6,13 +6,8 @@ import jdk.nashorn.internal.runtime.regexp.joni.ast.AnyCharNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
-import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
-import java.util.StringJoiner;
 
 import java.util.Iterator;
-import java.util.Objects;
-import java.util.function.Predicate;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -23,7 +18,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
      */
     private static final class Node<T> {
         private T verdi;                   // nodens verdi
-        private Node<T> forrige, neste;    // pekere
+        private Node<T> forrige;
+        private Node neste;    // pekere
 
         private Node(T verdi, Node<T> forrige, Node<T> neste) {
             this.verdi = verdi;
@@ -42,9 +38,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
+    // hjelpemetode
+    private Node finnNode(int indeks) //fra kompendiet men funker ikke
+    {
+        Node<T> node = hode;
+        for (int i = 0; i < indeks; i++){
+            node = node.neste;
+        }
+        return node;
+    }
+
+
     public DobbeltLenketListe() {
         //throw new NotImplementedException();
         Node<T> p = new Node<T>(null);
+        antall = 0;
+        endringer = 0;
     }
 
     public DobbeltLenketListe(T[] a){
@@ -179,7 +188,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        indeksKontroll(indeks, false);
+        return (T) finnNode(indeks).verdi;
     }
 
     @Override
@@ -255,7 +266,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         private int iteratorendringer;
 
         private DobbeltLenketListeIterator(){
-            throw new NotImplementedException();
+            denne = hode;     // p starter på den første i listen
+            fjernOK = false;  // blir sann når next() kalles
+            iteratorendringer = endringer;  // teller endringer
         }
 
         private DobbeltLenketListeIterator(int indeks){

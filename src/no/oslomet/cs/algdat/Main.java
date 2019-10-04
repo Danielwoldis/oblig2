@@ -1,16 +1,20 @@
 package no.oslomet.cs.algdat;
 
-public class Main{
+import java.util.List;
+import java.util.Objects;
+
+public class Main extends DobbeltLenketListe{
     public static void main(String[] args) {
-        String[] s1 = {}, s2 = {null,"A",null,"c","d","e","B"}, s3 = {null,"A",null,"B",null};
+        //System.out.println("noe");
 
-        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
+        Integer[] a = {null, 1, null};
+        Objects.requireNonNull(a, "Tabellen har ingen verdier!");
 
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(a);
+        //System.out.println(liste.antall());
 
-        System.out.println(l2.toString());
-
-
-
+        Liste<String> liste1 = new DobbeltLenketListe<>();
+        System.out.println(liste.antall() + " " + liste.tom());
 
     }
 }
