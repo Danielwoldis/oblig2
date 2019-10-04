@@ -2,6 +2,7 @@ package no.oslomet.cs.algdat;
 
 ////////////////// class DobbeltLenketListe //////////////////////////////
 
+import jdk.nashorn.internal.runtime.regexp.joni.ast.AnyCharNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Comparator;
@@ -52,33 +53,87 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new NullPointerException("Tabellen er tom!");
         }
 
-        DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
 
-        Node<T> p = new Node<T>(null);
-        liste.hode = p;
 
-        int startverdi = 0;
+        for(T t:a){
+            if(t!=null){
+                antall++;
+            }
+        }
 
-        for(T t: a){ // finner første objekt i tabellen som ikke er null
-            if (t != null){
-                p = new Node<T>(t);
+        Node<T> temp= new Node<>(null);
+        int tempAntall=0;
+        int startverdi=0;
+        for(T t:a){
+            startverdi++;
+            if(t!=null){
+                hode=new Node<>(t);
                 break;
             }
-            startverdi++;
+
         }
 
-        for (int i = startverdi; i < a.length; i++){
-            if(a[i] != null){
-                antall++;
-                Node<T> q = new Node<T>(a[i]);
-                q.forrige = p;
-                p.neste = q;
-
-                p = q;
-                liste.hale = q;
+        for(int i=startverdi;i<a.length;i++) {
+            if (a[i] == null) {
+                continue;
             }
 
+            if (hode.neste==null){
+                Node<T> ny = new Node<>(a[i]);
+                hode.neste = ny;
+                temp = ny;
+                tempAntall++;
+
+
+            } else if (tempAntall < antall) {
+                Node<T> ny = new Node<>(a[i]);
+                temp.neste=ny;
+                ny.forrige=temp;
+                temp=ny;
+            }else{
+                hale= new Node<>(a[i]);
+                hale.forrige=temp;
+            }
         }
+//        DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
+//
+//        Node<T> p = new Node<T>(null);
+//        liste.hode = p;
+//
+//        int startverdi = 0;
+//
+//        for(T t: a){ // finner første objekt i tabellen som ikke er null
+//            if (t != null){
+//                p = new Node<T>(t);
+//                break;
+//            }
+//            startverdi++;
+//        }
+//
+//        for (int i = startverdi; i < a.length; i++){
+//            if(a[i] != null){
+//                antall++;
+//                Node<T> q = new Node<T>(a[i]);
+//                q.forrige = p;
+//                p.neste = q;
+//
+//                p = q;
+//                liste.hale = q;
+//            }
+//
+//        }
+//        this.hale=liste.hale;
+//        this.hode=liste.hode;
+
+
+
+
+
+
+
+
+
+
     }
 
     public Liste<T> subliste(int fra, int til){
@@ -99,11 +154,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new NotImplementedException();
+        Objects.requireNonNull(verdi,"null");
+        if (antall()==0){
+            hale= new Node<>(verdi);
+            antall++;
+            return true;
+        }else{
+            hale.forrige= new Node<>(verdi);
+            antall++;
+            return true;
+        }
     }
 
     @Override
     public void leggInn(int indeks, T verdi) {
+
         throw new NotImplementedException();
     }
 
@@ -144,11 +209,33 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new NotImplementedException();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        if(!tom()){
+            sb.append(hode.verdi);
+
+
+
+         for(Node<T> p = hode.neste; p != null; p = p.neste){
+             sb.append(",").append(" ").append(p.verdi);
+         }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     public String omvendtString() {
-        throw new NotImplementedException();
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        if(!tom()){
+            sb.append(hale.verdi);
+
+         for(Node<T> p = hale.forrige; p != null; p = p.forrige){
+             sb.append(",").append(" ").append(p.verdi);
+         }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     @Override
