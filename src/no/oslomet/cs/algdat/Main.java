@@ -7,14 +7,19 @@ public class Main extends DobbeltLenketListe{
     public static void main(String[] args) {
         //System.out.println("noe");
 
-        Integer[] a = {null, 1, null};
-        Objects.requireNonNull(a, "Tabellen har ingen verdier!");
+        String[] s1 = {}, s2 = {"A"}, s3 = {"A",null,"B","C","D","E"};
+        DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
+        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
+        DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
 
-        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(a);
-        //System.out.println(liste.antall());
+        System.out.println(l3.omvendtString());
+        System.out.println("sssss");
+//        System.out.println(l2.toString());
+//        System.out.println(l1.toString());
+//        System.out.println(l1.omvendtString());
+//        System.out.println(l2.omvendtString());
+//        System.out.println(l3.omvendtString());
 
-        Liste<String> liste1 = new DobbeltLenketListe<>();
-        System.out.println(liste.antall() + " " + liste.tom());
 
     }
 }
