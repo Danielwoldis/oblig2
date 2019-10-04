@@ -21,6 +21,9 @@ public class Main extends DobbeltLenketListe{
 //        System.out.println(l3.omvendtString());
 
 
+        System.out.println(liste.toString());
+        liste.leggInn(4);
+        System.out.println(liste.toString());
     }
 }
 

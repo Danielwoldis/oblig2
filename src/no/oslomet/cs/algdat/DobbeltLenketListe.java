@@ -8,7 +8,6 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Comparator;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -52,7 +51,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public DobbeltLenketListe() {
         //throw new NotImplementedException();
-        Node<T> node=new Node<>(null);
+        Node<T> p = new Node<T>(null);
         antall = 0;
         endringer = 0;
     }
@@ -63,25 +62,86 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new NullPointerException("Tabellen er tom!");
         }
 
-        Node<T> temp= new Node<>(null);
+
+
         for(T t:a){
-            antall++;
+            if(t!=null){
+                antall++;
+            }
         }
-        for (T t : a) {
-            if (t == null) {
+
+        Node<T> temp= new Node<>(null);
+        int tempAntall=0;
+        int startverdi=0;
+        for(T t:a){
+            startverdi++;
+            if(t!=null){
+                hode=new Node<>(t);
+                break;
+            }
+
+        }
+
+        for(int i=startverdi;i<a.length;i++) {
+            if (a[i] == null) {
                 continue;
             }
-            if (hode == null) {
-                temp = new Node<>(t);
-                hode = temp;
 
-            } else {
-                Node<T> ny = new Node<>(t, temp, null);
-                temp.neste = ny;
+            if (hode.neste==null){
+                Node<T> ny = new Node<>(a[i]);
+                hode.neste = ny;
                 temp = ny;
+                tempAntall++;
+
+
+            } else if (tempAntall < antall) {
+                Node<T> ny = new Node<>(a[i]);
+                temp.neste=ny;
+                ny.forrige=temp;
+                temp=ny;
+            }else{
+                hale= new Node<>(a[i]);
+                hale.forrige=temp;
             }
         }
-        hale=temp;
+//        DobbeltLenketListe<T> liste = new DobbeltLenketListe<T>();
+//
+//        Node<T> p = new Node<T>(null);
+//        liste.hode = p;
+//
+//        int startverdi = 0;
+//
+//        for(T t: a){ // finner første objekt i tabellen som ikke er null
+//            if (t != null){
+//                p = new Node<T>(t);
+//                break;
+//            }
+//            startverdi++;
+//        }
+//
+//        for (int i = startverdi; i < a.length; i++){
+//            if(a[i] != null){
+//                antall++;
+//                Node<T> q = new Node<T>(a[i]);
+//                q.forrige = p;
+//                p.neste = q;
+//
+//                p = q;
+//                liste.hale = q;
+//            }
+//
+//        }
+//        this.hale=liste.hale;
+//        this.hode=liste.hode;
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -106,7 +166,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(verdi!=null){
             return false;
         }
-        if (tom()){
+        if (antall()==0){
             hale= new Node<>(verdi);
             antall++;
             return true;
