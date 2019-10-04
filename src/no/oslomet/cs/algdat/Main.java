@@ -7,23 +7,29 @@ public class Main extends DobbeltLenketListe{
     public static void main(String[] args) {
         //System.out.println("noe");
 
-        String[] s1 = {}, s2 = {"A"}, s3 = {"A",null,"B","C","D","E"};
+        String[] s1 = {};
+        Integer[] s2 = {0,1,2,3};
+        String[] s3 = {"A",null,"B","C","D","E"};
         DobbeltLenketListe<String> l1 = new DobbeltLenketListe<>(s1);
-        DobbeltLenketListe<String> l2 = new DobbeltLenketListe<>(s2);
+        DobbeltLenketListe<Integer> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
 
-        System.out.println(l3.omvendtString());
-        System.out.println("sssss");
-//        System.out.println(l2.toString());
-//        System.out.println(l1.toString());
-//        System.out.println(l1.omvendtString());
-//        System.out.println(l2.omvendtString());
-//        System.out.println(l3.omvendtString());
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
+
+        liste.leggInn(0, 4);  // ny verdi i tom liste
+        liste.leggInn(0, 2);  // ny verdi legges forrest
+        liste.leggInn(2, 6);  // ny verdi legges bakerst
+        liste.leggInn(1, 3);  // ny verdi nest forrest
+        liste.leggInn(3, 5);  // ny verdi nest bakerst
+        liste.leggInn(0, 1);  // ny verdi forrest
+        liste.leggInn(6, 7);  // ny verdi legges bakerst
+
+        System.out.println(liste.antall());
+        System.out.println(liste.toString());
 
 
-        System.out.println(liste.toString());
-        liste.leggInn(4);
-        System.out.println(liste.toString());
+
+
     }
 }
 

@@ -8,6 +8,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.Comparator;
 
 import java.util.Iterator;
+import java.util.Objects;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -62,19 +63,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new NullPointerException("Tabellen er tom!");
         }
 
-
-
         for(T t:a){
             if(t!=null){
                 antall++;
             }
         }
 
-
         Node<T> temp= new Node<>(null);
-        for(T t:a){
-            antall++;
-        }
+
         for (T t : a) {
             if (t == null) {
                 continue;
@@ -110,29 +106,55 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        if(verdi!=null){
-            return false;
-        }
+        if(verdi==null) return false; // egentlig object.req...
         if (antall()==0){
-            hale= new Node<>(verdi);
+            Node<T> ny= new Node<>(verdi);
+            hode=ny;
+            hale=ny;
             antall++;
+            endringer++;
+
             return true;
         }else{
-            hale.forrige= new Node<>(verdi);
+            hale.neste=new Node<>(verdi,hale,null);
+            hale=hale.neste;
             antall++;
+            endringer++;
+
             return true;
         }
     }
 
     @Override
     public void leggInn(int indeks, T verdi) {
+        if(indeks<=-1 || indeks>antall || verdi == null) return;
+        if(tom()){
+            hale=hode=new Node<>(verdi);
+            antall++;
+        } else if (antall==1){
+            Node<T> node= new Node<>(verdi,null,hale);
+            hode=node;
+            antall++;
+            endringer++;
 
-        throw new NotImplementedException();
+        } else if(antall==indeks){
+            leggInn(verdi);
+        }else {
+            Node<T> n = hode;
+            for (int i = 0; i < indeks-1; i++) {
+                n = n.neste;
+
+            }
+            Node<T> etter = n.neste;
+            Node<T> inn = new Node<>(verdi, n, etter);
+            antall++;
+            endringer++;
+        }
     }
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new NotImplementedException();
+        return indeksTil(verdi)!=-1;
     }
 
     @Override
@@ -144,7 +166,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new NotImplementedException();
+        Node<T> ny=hode;
+        for(int i=0;i<antall;i++){
+            if(ny.verdi.equals(verdi)){
+                return i;
+            }
+            ny=ny.neste;
+        }
+        return -1;
     }
 
     @Override
