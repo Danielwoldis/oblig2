@@ -39,7 +39,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
-    // hjelpemetode
+    // hjelpemetoder
     private Node<T> finnNode(int indeks)
     {
         Node<T> node;
@@ -56,6 +56,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         return node;
+    }
+
+    private static void fratilKontroll(int antall, int fra, int til)
+    {
+        if (fra < 0)                                  // fra er negativ
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > antall)                          // til er utenfor tabellen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > antall(" + antall + ")");
+
+        if (fra > til)                                // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
 
@@ -98,7 +113,26 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til){
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        fratilKontroll(antall, fra, til);
+
+        DobbeltLenketListe<T> nyliste = new DobbeltLenketListe<>();
+        Node<T> node = new Node<>((T) finnNode(fra).verdi);
+        nyliste.hode = node;
+
+
+        for (int i = fra+1; i < til; i++){ //noe galt i for tror jeg
+            Node<T> p = new Node<>((T) finnNode(i).verdi);
+
+            p.forrige = node;
+            node.neste = p;
+
+            node = p;
+            nyliste.antall++;
+        }
+
+
+        return nyliste;
     }
 
     @Override
