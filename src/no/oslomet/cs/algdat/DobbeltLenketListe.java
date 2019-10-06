@@ -254,8 +254,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(!tom()){
             sb.append(hode.verdi);
 
-
-
          for(Node<T> p = hode.neste; p != null; p = p.neste){
              sb.append(",").append(" ").append(p.verdi);
          }
@@ -329,7 +327,45 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove(){
-            throw new NotImplementedException();
+            public void remove(){
+            if(!fjernOK){
+                throw new IllegalStateException("Feil ved fjerning verdi nå");
+            }
+            
+            if(iteratorendringer != endringer){
+                throw new ConcurrentModificationException("Listen har blitt endret");
+            }
+            
+            fjernOK = false;
+            Node<T> p = hode;
+            
+            if(antall == 1){
+                hode = hale = null;
+            }
+            
+            else if(denne == null){
+                p = hale;
+                hale = hale.forrige;
+                hale.neste = null;
+            }
+            
+            else if(denne.forrige == hode){
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+            
+            else{
+                p = denne.forrige;
+                p.forrige.neste = p.neste;
+                p.neste.forrige = p.forrige;
+            }
+            
+            p.verdi = null;
+            p.forrige = p.neste = null;
+            antall--;
+                
+            endringer++;
+            iteratorendringer++;
         }
 
     } // class DobbeltLenketListeIterator
