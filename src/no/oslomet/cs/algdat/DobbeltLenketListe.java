@@ -40,12 +40,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     // hjelpemetode
-    private Node finnNode(int indeks) //fra kompendiet men funker ikke
+    private Node<T> finnNode(int indeks)
     {
-        Node<T> node = hode;
-        for (int i = 0; i < indeks; i++){
-            node = node.neste;
+        Node<T> node;
+        if(indeks < antall/2){
+            node = hode;
+            for (int i = 0; i < indeks; i++){
+                node = node.neste;
+            }
+        }else {
+            node = hale;
+            for (int i = antall-1; i > indeks; i--){
+                node = node.forrige;
+            }
         }
+
         return node;
     }
 
@@ -178,7 +187,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        Objects.requireNonNull(nyverdi, "Ikke tillatt med nullverdier");
+        indeksKontroll(indeks, false);
+        Node<T> node = finnNode(indeks);
+        T utverdi = node.verdi;
+        node.verdi = nyverdi;
+        endringer++;
+
+        return utverdi;
     }
 
     @Override

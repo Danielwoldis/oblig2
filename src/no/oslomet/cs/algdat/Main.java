@@ -7,6 +7,7 @@ public class Main extends DobbeltLenketListe{
     public static void main(String[] args) {
         //System.out.println("noe");
 
+        /*
         String[] s1 = {};
         Integer[] s2 = {0,1,2,3};
         String[] s3 = {"A",null,"B","C","D","E"};
@@ -26,10 +27,11 @@ public class Main extends DobbeltLenketListe{
 
         System.out.println(liste.antall());
         System.out.println(liste.toString());
+         */
 
 
-
-
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(new Integer[]{1,2,3} );
+        System.out.println(liste.hent(2));
     }
 }
 
