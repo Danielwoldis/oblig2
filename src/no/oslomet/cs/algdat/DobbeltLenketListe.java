@@ -120,7 +120,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> node = new Node<>((T) finnNode(fra).verdi);
         nyliste.hode = node;
 
-
         for (int i = fra+1; i < til; i++){ //noe galt i for tror jeg
             Node<T> p = new Node<>((T) finnNode(i).verdi);
 
@@ -329,7 +328,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         public void remove(){
             public void remove(){
             if(!fjernOK){
-                throw new IllegalStateException("Feil ved fjerning verdi nå");
+                throw new IllegalStateException("Feil ved fjerning av verdi");
             }
             
             if(iteratorendringer != endringer){
