@@ -13,6 +13,8 @@ public class Main extends DobbeltLenketListe{
                 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I',
                 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L'};
 
+        String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
+
         DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(characters);
         /*
         String[] s1 = {};
@@ -49,12 +51,12 @@ public class Main extends DobbeltLenketListe{
         //System.out.println(liste.subliste(0,11));  // skal kaste unntak
         System.out.println(liste.subliste(6, 7));
         */
-        Liste<Character> liste1 = new DobbeltLenketListe<>(characters);
+        Liste<String> liste1 = new DobbeltLenketListe<>(navn);
         long tid = System.currentTimeMillis();
         DobbeltLenketListe.sorter(liste1, Comparator.naturalOrder());
         tid = System.currentTimeMillis() - tid;
 
-        System.out.println(liste);
+        //System.out.println(liste);
         System.out.println(liste1);
         System.out.println(tid);
     }

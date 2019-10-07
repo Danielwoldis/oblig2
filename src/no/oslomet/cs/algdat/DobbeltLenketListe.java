@@ -231,12 +231,36 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        boolean endret = false;
+        for (int i = 0; i < this.antall-1; i++){
+            if (hent(i) == verdi){
+                Node<T> node = finnNode(i);
+                node.forrige.neste = node.neste;
+
+                antall--;
+                endringer++;
+
+                endret = true;
+            }
+        }
+
+        return endret;
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        indeksKontroll(indeks, false);
+        Node<T> node = finnNode(indeks);
+        if (hode != node) node.forrige.neste = node.neste;
+        if (hale != node) node.neste.forrige = node.forrige;
+
+        antall--;
+        endringer++;
+
+        return node.verdi;
     }
 
     @Override
