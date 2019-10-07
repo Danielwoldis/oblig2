@@ -5,10 +5,7 @@ package no.oslomet.cs.algdat;
 import jdk.nashorn.internal.runtime.regexp.joni.ast.AnyCharNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Comparator;
-
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -117,11 +114,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         fratilKontroll(antall, fra, til);
 
         DobbeltLenketListe<T> nyliste = new DobbeltLenketListe<>();
-        Node<T> node = new Node<>((T) finnNode(fra).verdi);
-        nyliste.hode = node;
+        if(fra == til) return nyliste;
 
-        for (int i = fra+1; i < til; i++){ //noe galt i for tror jeg
-            Node<T> p = new Node<>((T) finnNode(i).verdi);
+        Node<T> node = new Node<>(finnNode(fra).verdi);
+        nyliste.hode = node;
+        nyliste.antall++;
+
+        for (int i = fra+1; i < til; i++){
+            Node<T> p = new Node<>(finnNode(i).verdi);
 
             p.forrige = node;
             node.neste = p;
@@ -334,43 +334,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public void remove(){
-            public void remove(){
             if(!fjernOK){
                 throw new IllegalStateException("Feil ved fjerning av verdi");
             }
-            
+
             if(iteratorendringer != endringer){
                 throw new ConcurrentModificationException("Listen har blitt endret");
             }
-            
+
             fjernOK = false;
             Node<T> p = hode;
-            
+
             if(antall == 1){
                 hode = hale = null;
             }
-            
+
             else if(denne == null){
                 p = hale;
                 hale = hale.forrige;
                 hale.neste = null;
             }
-            
+
             else if(denne.forrige == hode){
                 hode = hode.neste;
                 hode.forrige = null;
             }
-            
+
             else{
                 p = denne.forrige;
                 p.forrige.neste = p.neste;
                 p.neste.forrige = p.forrige;
             }
-            
+
             p.verdi = null;
             p.forrige = p.neste = null;
             antall--;
-                
+
             endringer++;
             iteratorendringer++;
         }
