@@ -1,12 +1,19 @@
 package no.oslomet.cs.algdat;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 public class Main extends DobbeltLenketListe{
     public static void main(String[] args) {
         //System.out.println("noe");
+        Character[] characters = {'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I',
+                'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B',
+                'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A',
+                'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I',
+                'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L', 'B', 'R', 'A', 'S', 'I', 'L'};
 
+        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(characters);
         /*
         String[] s1 = {};
         Integer[] s2 = {0,1,2,3};
@@ -30,9 +37,9 @@ public class Main extends DobbeltLenketListe{
 
 
 
-        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(new Integer[]{1,2,3} );
+
         System.out.println(liste.hent(2));
-        */
+
 
         Character[] c = {'A','B','C','D','E','F','G','H','I','J'};
         DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
@@ -41,6 +48,15 @@ public class Main extends DobbeltLenketListe{
         System.out.println(liste.subliste(8,liste.antall()));  // [I, J]   ​
         //System.out.println(liste.subliste(0,11));  // skal kaste unntak
         System.out.println(liste.subliste(6, 7));
+        */
+        Liste<Character> liste1 = new DobbeltLenketListe<>(characters);
+        long tid = System.currentTimeMillis();
+        DobbeltLenketListe.sorter(liste1, Comparator.naturalOrder());
+        tid = System.currentTimeMillis() - tid;
+
+        System.out.println(liste);
+        System.out.println(liste1);
+        System.out.println(tid);
     }
 }
 
