@@ -789,7 +789,7 @@ class DobbeltLenketListeTest {
             }
         } catch (Exception e) {
             System.out.println
-                    ("Oppgave 6s: Skal ikke kaste unntak, men returnere false for en null-verdi!");
+                    (e + "Oppgave 6s: Skal ikke kaste unntak, men returnere false for en null-verdi!");
             antallFeil++;
         }
 

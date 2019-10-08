@@ -28,9 +28,9 @@ public class Main extends DobbeltLenketListe{
         DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(new Integer[]{1,2,4,5,67,7});
         Integer n=7;
         Integer n1=67;
-        liste.fjern(n);
+
         liste.fjern(n1);
-        System.out.println(liste.toString());
+        System.out.println(liste.fjern(null));
         System.out.println(liste.omvendtString());
 
 
