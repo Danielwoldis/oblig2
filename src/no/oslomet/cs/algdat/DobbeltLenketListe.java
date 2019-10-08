@@ -171,17 +171,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale=hode=new Node<>(verdi);
             antall++;
         } else if (antall==1){
-            Node<T> node= new Node<>(verdi,null,hale);
-            hode=node;
+            hode= new Node<>(verdi,null,hale);
+            hale.forrige=hode;
             antall++;
             endringer++;
 
         } else if(antall==indeks){
             leggInn(verdi);
         }else {
-            Node<T>f=finnNode(indeks);
-            Node<T> ff=finnNode(indeks);
-            
+//            Node<T> node=finnNode(indeks);
+//           node.forrige;
+//            Node<T> ny=new Node<>(verdi,ff,ne);
+//            ne.forrige=ny;
+//            ff.neste=ny;
+
+
 
 
 
@@ -309,7 +313,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new NotImplementedException();
+        return new  DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T>
