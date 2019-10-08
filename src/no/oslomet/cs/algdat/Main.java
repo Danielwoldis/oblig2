@@ -15,7 +15,7 @@ public class Main extends DobbeltLenketListe{
 
         String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
 
-        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(characters);
+        //DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(characters);
         /*
         String[] s1 = {};
         Integer[] s2 = {0,1,2,3};
@@ -24,6 +24,7 @@ public class Main extends DobbeltLenketListe{
         DobbeltLenketListe<Integer> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
 
+        `*/
         DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
 
         liste.leggInn(0, 4);  // ny verdi i tom liste
@@ -32,7 +33,7 @@ public class Main extends DobbeltLenketListe{
         liste.leggInn(1, 3);  // ny verdi nest forrest
         liste.leggInn(3, 5);  // ny verdi nest bakerst
         liste.leggInn(0, 1);  // ny verdi forrest
-        liste.leggInn(6, 7);  // ny verdi legges bakerst
+//        liste.leggInn(6, 7);  // ny verdi legges bakerst
 
         System.out.println(liste.antall());
         System.out.println(liste.toString());
@@ -40,25 +41,25 @@ public class Main extends DobbeltLenketListe{
 
 
 
-        System.out.println(liste.hent(2));
-
-
-        Character[] c = {'A','B','C','D','E','F','G','H','I','J'};
-        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
-        System.out.println(liste.subliste(3,8));  // [D, E, F, G, H]
-        System.out.println(liste.subliste(5,5));  // []
-        System.out.println(liste.subliste(8,liste.antall()));  // [I, J]   ​
-        //System.out.println(liste.subliste(0,11));  // skal kaste unntak
-        System.out.println(liste.subliste(6, 7));
-        */
-        Liste<String> liste1 = new DobbeltLenketListe<>(navn);
-        long tid = System.currentTimeMillis();
-        DobbeltLenketListe.sorter(liste1, Comparator.naturalOrder());
-        tid = System.currentTimeMillis() - tid;
-
-        //System.out.println(liste);
-        System.out.println(liste1);
-        System.out.println(tid);
+//        System.out.println(liste.hent(2));
+//
+//
+//        Character[] c = {'A','B','C','D','E','F','G','H','I','J'};
+//        DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(c);
+//        System.out.println(liste.subliste(3,8));  // [D, E, F, G, H]
+//        System.out.println(liste.subliste(5,5));  // []
+//        System.out.println(liste.subliste(8,liste.antall()));  // [I, J]   ​
+//        //System.out.println(liste.subliste(0,11));  // skal kaste unntak
+//        System.out.println(liste.subliste(6, 7));
+//        */
+//        Liste<String> liste1 = new DobbeltLenketListe<>(navn);
+//        long tid = System.currentTimeMillis();
+//        DobbeltLenketListe.sorter(liste1, Comparator.naturalOrder());
+//        tid = System.currentTimeMillis() - tid;
+//
+//        //System.out.println(liste);
+//        System.out.println(liste1);
+//        System.out.println(tid);
     }
 }
 
