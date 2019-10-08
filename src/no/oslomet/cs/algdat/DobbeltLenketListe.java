@@ -79,8 +79,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a){
-        //throw new NotImplementedException();
-        if(a == null){ // skal egt bruke RequireNonNull
+        if(a == null){
             throw new NullPointerException("Tabellen er tom!");
         }
 
@@ -110,7 +109,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til){
-        //throw new NotImplementedException();
         fratilKontroll(antall, fra, til);
 
         DobbeltLenketListe<T> nyliste = new DobbeltLenketListe<>();
@@ -201,7 +199,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        //throw new NotImplementedException();
         indeksKontroll(indeks, false);
         return (T) finnNode(indeks).verdi;
     }
@@ -220,7 +217,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        //throw new NotImplementedException();
         Objects.requireNonNull(nyverdi, "Ikke tillatt med nullverdier");
         indeksKontroll(indeks, false);
         Node<T> node = finnNode(indeks);
@@ -233,7 +229,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        //throw new NotImplementedException();
 
         boolean endret = false;
         for (int i = 0; i < this.antall-1; i++){
@@ -253,7 +248,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        //throw new NotImplementedException();
         indeksKontroll(indeks, false);
         Node<T> node = finnNode(indeks);
         if (hode != node) node.forrige.neste = node.neste;
@@ -311,7 +305,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        //throw new NotImplementedException();
         return new DobbeltLenketListeIterator();
     }
 
