@@ -325,12 +325,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        //throw new NotImplementedException();
         return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new NotImplementedException();
+        return new  DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T>
