@@ -266,6 +266,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer++;
 
         return node.verdi;
+        //funker
     }
 
     @Override
