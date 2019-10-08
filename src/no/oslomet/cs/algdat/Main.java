@@ -15,6 +15,8 @@ public class Main extends DobbeltLenketListe{
 
         String[] navn = {"Lars","Anders","Bodil","Kari","Per","Berit"};
 
+        Integer[] tall = {1};
+
         //DobbeltLenketListe<Character> liste = new DobbeltLenketListe<>(characters);
         /*
         String[] s1 = {};
@@ -24,7 +26,7 @@ public class Main extends DobbeltLenketListe{
         DobbeltLenketListe<Integer> l2 = new DobbeltLenketListe<>(s2);
         DobbeltLenketListe<String> l3 = new DobbeltLenketListe<>(s3);
 
-        `*/
+        `
         DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>();
 
         liste.leggInn(0, 4);  // ny verdi i tom liste
@@ -34,10 +36,13 @@ public class Main extends DobbeltLenketListe{
         liste.leggInn(3, 5);  // ny verdi nest bakerst
         liste.leggInn(0, 1);  // ny verdi forrest
 //        liste.leggInn(6, 7);  // ny verdi legges bakerst
-
-        System.out.println(liste.antall());
+*/
+        DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(tall);
         System.out.println(liste.toString());
-
+        liste.fjern(0);
+        System.out.println(liste.toString());
+        liste.leggInn(5);
+        System.out.println(liste.toString());
 
 
 
