@@ -329,6 +329,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks){
+            indeksKontroll(indeks, false);
             Node<T> node = new Node<>(hent(indeks));
             denne = node;
             fjernOK = false;
