@@ -72,7 +72,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
     public DobbeltLenketListe() {
-        //throw new NotImplementedException();
         Node<T> p = new Node<T>(null);
         antall = 0;
         endringer = 0;
@@ -127,8 +126,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             node = p;
             nyliste.antall++;
         }
-
-
         return nyliste;
     }
 
@@ -185,15 +182,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 //            ne.forrige=ny;
 //            ff.neste=ny;
 
-
-
-
-
             antall++;
             endringer++;
             }
-
-
     }
 
     @Override
@@ -246,7 +237,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 endret = true;
             }
         }
-
         return endret;
     }
 
@@ -313,6 +303,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
+        indeksKontroll(indeks);
         return new  DobbeltLenketListeIterator(indeks);
     }
 
