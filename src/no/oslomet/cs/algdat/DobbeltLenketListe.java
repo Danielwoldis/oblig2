@@ -4,9 +4,7 @@ package no.oslomet.cs.algdat;
 
 import jdk.nashorn.internal.runtime.regexp.joni.ast.AnyCharNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
-
 
 public class DobbeltLenketListe<T> implements Liste<T> {
 
@@ -69,7 +67,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             throw new IllegalArgumentException
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
-
 
     public DobbeltLenketListe() {
         Node<T> p = new Node<T>(null);
