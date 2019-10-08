@@ -899,7 +899,7 @@ class DobbeltLenketListeTest {
                     ("Oppgave 6zf: Her må det være en pekerfeil!");
             antallFeil++;
         }
-/*
+
         Liste<Integer> nyliste = new DobbeltLenketListe<>();
 
         for (int i = 1; i <= 100_000; i++) nyliste.leggInn(i);
@@ -920,7 +920,7 @@ class DobbeltLenketListeTest {
             System.out.println("Oppgave 6zg: Ineffektiv kode! Har du kodet den ene fjern-metoden");
             System.out.println("ved hjelp av den andre? Eller så er en av fjern-metodene dine litt treg.");
             antallFeil++;
-        }*/
+        }
     }
 
     //// Oppgave 7 ////////////////////////////
