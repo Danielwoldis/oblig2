@@ -4,9 +4,7 @@ package no.oslomet.cs.algdat;
 
 import jdk.nashorn.internal.runtime.regexp.joni.ast.AnyCharNode;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.util.*;
-
 
 public class DobbeltLenketListe<T> implements Liste<T> {
 
@@ -70,9 +68,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
-
     public DobbeltLenketListe() {
-        //throw new NotImplementedException();
         Node<T> p = new Node<T>(null);
         antall = 0;
         endringer = 0;
@@ -127,8 +123,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             node = p;
             nyliste.antall++;
         }
-
-
         return nyliste;
     }
 
@@ -170,7 +164,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if(tom()){
             hale=hode=new Node<>(verdi);
             antall++;
-            endringer++;
         } else if (antall==1){
             hode= new Node<>(verdi,null,hale);
             hale.forrige=hode;
@@ -238,40 +231,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        int g=indeksTil(verdi);
-        if (g==-1) return false;
 
-        Node<T> node = finnNode(g);
+        boolean endret = false;
+        for (int i = 0; i < this.antall-1; i++){
+            if (hent(i) == verdi){
+                Node<T> node = finnNode(i);
+                node.forrige.neste = node.neste;
 
-        if (hode != node){
-            node.forrige.neste = node.neste;
-            antall--;
-            endringer++;
-            return true;
-        }
-        if (hale != node){
-            node.neste.forrige = node.forrige;
-            antall--;
-            endringer++;
-            return true;
-        }
-        if (hode.equals(node)){
-            hode=hode.neste;
-            hode.forrige=null;
-            antall--;
-            endringer++;
-            return true;
-        }
-        if(hale.equals(node)){
-            hale=hale.forrige;
-            hale.neste=null;
-            antall--;
-            endringer++;
-            return true;
-        }
-        return false;
+                antall--;
+                endringer++;
 
-
+                endret = true;
+            }
+        }
+        return endret;
     }
 
     @Override
@@ -345,6 +318,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Iterator<T> iterator(int indeks) {
+        indeksKontroll(indeks,false);
         return new  DobbeltLenketListeIterator(indeks);
     }
 
@@ -361,7 +335,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         private DobbeltLenketListeIterator(int indeks){
-            throw new NotImplementedException();
+            indeksKontroll(indeks, false);
+            Node<T> node = new Node<>(hent(indeks));
+            denne = node;
+            fjernOK = false;
+            iteratorendringer = endringer;
         }
 
         @Override
