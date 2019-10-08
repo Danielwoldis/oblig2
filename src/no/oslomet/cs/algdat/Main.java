@@ -38,11 +38,11 @@ public class Main extends DobbeltLenketListe{
 //        liste.leggInn(6, 7);  // ny verdi legges bakerst
 */
         DobbeltLenketListe<Integer> liste = new DobbeltLenketListe<>(tall);
-        System.out.println(liste.toString());
-        liste.fjern(0);
-        System.out.println(liste.toString());
+        System.out.println(liste.toString() + " " + liste.antall());
+        liste.fjern(new Integer(1));
+        System.out.println(liste.toString() + " " + liste.antall());
         liste.leggInn(5);
-        System.out.println(liste.toString());
+        System.out.println(liste.toString()+ " " + liste.antall());
 
 
 

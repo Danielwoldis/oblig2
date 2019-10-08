@@ -237,19 +237,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 Node<T> node = finnNode(i);
                 if (!hode.equals(node)) node.forrige.neste = node.neste;
                 if (!hale.equals(node)) node.neste.forrige = node.forrige;
-                if (hode.equals(node)){
+                if(antall == 1){
+                    hode = hale = null;
+                }else if (hode.equals(node)) {
                     hode = hode.neste;
-                    //hode.forrige = null;
-                }
-                if(hale.equals(node)){
+                    hode.forrige = null;
+                }else if(hale.equals(node)){
                     hale = hale.forrige;
-                    //hale.neste = null;
+                    hale.neste = null;
                 }
 
                 antall--;
                 endringer++;
 
                 endret = true;
+                break;
             }
         }
         return endret;
@@ -267,10 +269,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             //hode.forrige = hale.neste = null;
         }else if(hode.equals(node)){
             hode = hode.neste;
-            //hode.forrige = null;
+            hode.forrige = null;
         }else if(hale.equals(node)){
             hale = hale.forrige;
-            //hale.neste = null;
+            hale.neste = null;
         }
 
         antall--;
